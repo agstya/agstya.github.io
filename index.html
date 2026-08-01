@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#06080f">
+  <meta name="theme-color" content="#f3f6fb">
   <meta name="color-scheme" content="dark light">
   <title>Agastya Kommanamanchi | Forward-Deployed AI Engineering Leader</title>
   <meta name="description" content="Portfolio of Agastya Kommanamanchi, a forward-deployed AI engineering leader and enterprise solutions architect building production AI, data and cloud platforms.">
   <link rel="canonical" href="https://agstya.github.io/">
-  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   <link rel="preload" href="assets/images/agastya-professional.webp" as="image" type="image/webp">
   <link rel="stylesheet" href="assets/css/site.css">
 
@@ -28,8 +28,7 @@
   <script>
     (function () {
       const saved = localStorage.getItem('agastya-theme');
-      const preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-      document.documentElement.dataset.theme = saved || preferred;
+      document.documentElement.dataset.theme = saved || 'light';
     }());
   </script>
   <script type="application/ld+json">
@@ -62,6 +61,34 @@
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
 
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="icon-linkedin" viewBox="0 0 24 24">
+      <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+      <path d="M8 10v7M8 7.3v.2M12 17v-7m0 3.2c1-2.6 5-2.8 5 1V17"></path>
+    </symbol>
+    <symbol id="icon-github" viewBox="0 0 24 24">
+      <path d="M9 19c-4.3 1.4-4.3-2.4-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.8-1.4 5.8-6.2A4.8 4.8 0 0 0 19 6c.1-.3.6-1.7-.1-3.3 0 0-1.1-.3-3.6 1.3a12.4 12.4 0 0 0-6.6 0C6.2 2.4 5.1 2.7 5.1 2.7 4.4 4.3 4.9 5.7 5 6a4.8 4.8 0 0 0-1.3 3.3c0 4.8 3 5.9 5.8 6.2-.4.4-.7.9-.7 1.8V21"></path>
+    </symbol>
+    <symbol id="icon-credly" viewBox="0 0 24 24">
+      <path d="M12 3 19 6.5v5.2c0 4.3-2.9 7.6-7 9.3-4.1-1.7-7-5-7-9.3V6.5L12 3Z"></path>
+      <path d="m12 8 1.1 2.2 2.4.4-1.7 1.7.4 2.4-2.2-1.1-2.2 1.1.4-2.4-1.7-1.7 2.4-.4L12 8Z"></path>
+    </symbol>
+    <symbol id="icon-tableau" viewBox="0 0 24 24">
+      <path d="M12 2v5M9.5 4.5h5M12 17v5M9.5 19.5h5M2 12h5M4.5 9.5v5M17 12h5M19.5 9.5v5M12 9v6M9 12h6"></path>
+    </symbol>
+    <symbol id="icon-dev" viewBox="0 0 24 24">
+      <rect x="2.5" y="5" width="19" height="14" rx="2.5"></rect>
+      <path d="m8.5 9-2.5 3 2.5 3M15.5 9l2.5 3-2.5 3M13.5 8l-3 8"></path>
+    </symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="2.5"></rect>
+      <path d="m4 7 8 6 8-6"></path>
+    </symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24">
+      <path d="M5 19 19 5M9 5h10v10"></path>
+    </symbol>
+  </svg>
+
   <div class="ambient ambient-one" aria-hidden="true"></div>
   <div class="ambient ambient-two" aria-hidden="true"></div>
   <div class="grid-overlay" aria-hidden="true"></div>
@@ -69,8 +96,9 @@
   <header class="site-header" id="top">
     <nav class="nav-shell" aria-label="Primary navigation">
       <a class="brand" href="#top" aria-label="AK — Agastya Kommanamanchi, home">
-        <span class="brand-mark" aria-hidden="true">AK</span>
+        <span class="brand-avatar" aria-hidden="true"><picture><source srcset="assets/images/agastya-ai-avatar.webp" type="image/webp"><img src="assets/images/agastya-ai-avatar.png" width="40" height="40" alt=""></picture></span>
         <span class="brand-name">Agastya Kommanamanchi</span>
+        <span class="brand-ai-label">AI</span>
       </a>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
@@ -79,78 +107,133 @@
       </button>
 
       <div class="nav-links" id="nav-links">
-        <a href="#about">About</a>
+        <a href="#about">Profile</a>
         <a href="#experience">Experience</a>
         <a href="#work">Work</a>
         <a href="#credentials">Credentials</a>
-        <a href="#insights">Insights</a>
+        <a href="#education">Education</a>
         <a href="#contact">Contact</a>
       </div>
 
-      <button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Change color theme">
-        <span class="theme-icon" aria-hidden="true">◐</span>
+      <button class="theme-toggle" type="button" aria-label="Light theme active. Switch to dark mode" title="Switch to dark mode">
+        <span class="theme-icon" aria-hidden="true">☀</span>
+        <span class="theme-label" aria-hidden="true">Light</span>
       </button>
     </nav>
   </header>
 
   <main id="main-content" tabindex="-1">
-    <section class="hero section-shell" aria-labelledby="hero-title">
-      <div class="hero-copy reveal">
-        <div class="eyebrow"><span class="status-dot"></span> Forward-Deployed Engineer at Deloitte</div>
-        <p class="hero-kicker">AI engineering • enterprise architecture • delivery leadership</p>
-        <h1 id="hero-title">Building AI systems that move from <span>ambition</span> to <span>adoption.</span></h1>
-        <p class="hero-summary">I'm Agastya Kommanamanchi, a forward-deployed AI engineering leader and enterprise solutions architect. I shape complex opportunities, architect secure production platforms and lead teams through delivery - across AI, data and cloud.</p>
-
-        <div class="hero-actions">
-          <a class="button button-primary" href="#work">Explore my impact <span aria-hidden="true">↓</span></a>
-          <a class="button button-secondary" href="mailto:kommanamanchi.agastya@gmail.com">Start a conversation <span aria-hidden="true">↗</span></a>
-        </div>
-
-        <div class="hero-meta" role="group" aria-label="Location and experience">
-          <span>NYC Metro</span>
-          <span>10+ years</span>
-          <span>AI • Data • Cloud</span>
-        </div>
-
-        <div class="social-row" role="group" aria-label="Professional profiles">
-          <a href="https://www.linkedin.com/in/agastya-kommanamanchi/" target="_blank" rel="noreferrer"><span aria-hidden="true">in</span> LinkedIn</a>
-          <a href="https://github.com/agstya" target="_blank" rel="noreferrer"><span aria-hidden="true">gh</span> GitHub</a>
-          <a href="https://www.credly.com/users/agastya/badges/credly" target="_blank" rel="noreferrer"><span aria-hidden="true">cr</span> Credly</a>
-          <a href="https://public.tableau.com/app/profile/agastya.kommanamanchi" target="_blank" rel="noreferrer"><span aria-hidden="true">tb</span> Tableau</a>
-          <a href="https://dev.to/agastya_kommanamanchi_d4f" target="_blank" rel="noreferrer"><span aria-hidden="true">dv</span> DEV</a>
-        </div>
-      </div>
-
-      <div class="hero-visual reveal" data-delay="1">
-        <div class="portrait-frame tilt-card">
-          <div class="portrait-orbit orbit-one" aria-hidden="true"></div>
-          <div class="portrait-orbit orbit-two" aria-hidden="true"></div>
+    <section class="hero dashboard-hero" aria-labelledby="hero-title">
+      <div class="identity-panel reveal">
+        <div class="identity-photo tilt-card">
           <picture>
             <source srcset="assets/images/agastya-professional.webp" type="image/webp">
             <img src="assets/images/agastya-professional.jpg" width="800" height="800" alt="Agastya Kommanamanchi in a navy blazer" fetchpriority="high">
           </picture>
-          <div class="portrait-caption">
-            <span>Technical strategy</span>
-            <span>Production delivery</span>
-            <span>Executive alignment</span>
-          </div>
+          <span class="availability-badge"><span class="status-dot"></span> NYC Metro</span>
         </div>
-        <div class="floating-chip chip-one" aria-hidden="true"><span>01</span> Discover</div>
-        <div class="floating-chip chip-two" aria-hidden="true"><span>02</span> Architect</div>
-        <div class="floating-chip chip-three" aria-hidden="true"><span>03</span> Deliver</div>
-      </div>
-    </section>
 
-    <section class="impact-band" id="impact" aria-label="Career impact">
-      <div class="impact-grid section-shell">
-        <article class="metric reveal"><strong>95%+</strong><span>AI task success</span></article>
-        <article class="metric reveal" data-delay="1"><strong>40%</strong><span>Latency reduction</span></article>
-        <article class="metric reveal" data-delay="2"><strong>25%</strong><span>Inference cost reduction</span></article>
-        <article class="metric reveal" data-delay="3"><strong>$4.5M</strong><span>Revenue recovery supported</span></article>
-        <article class="metric reveal"><strong>$1.2M</strong><span>Annual cloud savings</span></article>
-        <article class="metric reveal" data-delay="1"><strong>50M+</strong><span>Users served</span></article>
-        <article class="metric reveal" data-delay="2"><strong>10TB</strong><span>Daily telemetry processed</span></article>
-        <article class="metric reveal" data-delay="3"><strong>10+</strong><span>Years of experience</span></article>
+        <p class="identity-name">Agastya Kommanamanchi</p>
+        <div class="eyebrow">Forward-Deployed Engineer at Deloitte</div>
+        <h1 id="hero-title"><span>AI engineering leader.</span><br>Enterprise systems architect.</h1>
+        <p class="hero-summary">I turn ambitious AI, data and cloud priorities into secure production platforms, measurable outcomes and enterprise adoption.</p>
+
+        <div class="identity-signals" aria-label="Professional summary">
+          <span><strong>10+</strong> years</span>
+          <span><strong>5</strong> enterprise roles</span>
+          <span><strong>1</strong> granted patent</span>
+        </div>
+
+        <div class="social-icons" role="group" aria-label="Professional profiles">
+          <a href="https://www.linkedin.com/in/agastya-kommanamanchi/" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg aria-hidden="true"><use href="#icon-linkedin"></use></svg></a>
+          <a href="https://github.com/agstya" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub"><svg aria-hidden="true"><use href="#icon-github"></use></svg></a>
+          <a href="https://www.credly.com/users/agastya/badges/credly" target="_blank" rel="noreferrer" aria-label="Credly" title="Credly"><svg aria-hidden="true"><use href="#icon-credly"></use></svg></a>
+          <a href="https://public.tableau.com/app/profile/agastya.kommanamanchi" target="_blank" rel="noreferrer" aria-label="Tableau Public" title="Tableau Public"><svg aria-hidden="true"><use href="#icon-tableau"></use></svg></a>
+          <a href="https://dev.to/agastya_kommanamanchi_d4f" target="_blank" rel="noreferrer" aria-label="DEV Community" title="DEV Community"><svg aria-hidden="true"><use href="#icon-dev"></use></svg></a>
+          <a href="mailto:kommanamanchi.agastya@gmail.com" aria-label="Email Agastya" title="Email"><svg aria-hidden="true"><use href="#icon-mail"></use></svg></a>
+        </div>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#experience">Explore experience <span aria-hidden="true">↓</span></a>
+          <a class="button button-secondary" href="mailto:kommanamanchi.agastya@gmail.com">Start a conversation <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <div class="executive-dashboard reveal" data-delay="1">
+        <div class="dashboard-intro">
+          <div>
+            <span class="dashboard-label">Recruiter brief / At a glance</span>
+            <h2>Strategy to shipped systems.</h2>
+          </div>
+          <p>AI architecture, platform engineering and delivery leadership—connected to business outcomes.</p>
+        </div>
+
+        <div class="dashboard-grid">
+          <a class="dashboard-card scorecard-card spotlight-card" href="#work" aria-label="View selected systems and detailed outcomes">
+            <div class="card-heading">
+              <div><span class="card-code">OKR / KPI</span><h3>Outcome scorecard</h3></div>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="outcome-grid">
+              <div class="outcome-item"><span>O1 / Reliable AI</span><strong>95%+</strong><small>task success</small></div>
+              <div class="outcome-item"><span>O2 / Faster delivery</span><strong>40%</strong><small>lower latency</small></div>
+              <div class="outcome-item"><span>O3 / Unit economics</span><strong>25%</strong><small>lower inference cost</small></div>
+              <div class="outcome-item"><span>O4 / Business value</span><strong>$4.5M</strong><small>recovery supported</small></div>
+            </div>
+            <div class="scorecard-foot"><span><strong>$1.2M</strong> annual cloud savings</span><span><strong>&lt;48h</strong> deployment cycles</span><span><strong>12%</strong> retention lift</span></div>
+          </a>
+
+          <a class="dashboard-card career-card spotlight-card" href="#experience" aria-label="Go to complete experience timeline">
+            <div class="card-heading">
+              <div><span class="card-code">2014—Now</span><h3>Experience</h3></div>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="career-sparkline" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+            <ol class="career-list">
+              <li><span>2026—Now</span><strong>Deloitte</strong></li>
+              <li><span>2022—26</span><strong>The Hartford</strong></li>
+              <li><span>2021—22</span><strong>Accenture / PSEG</strong></li>
+              <li><span>2020—21</span><strong>Cognizant</strong></li>
+              <li><span>2014—19</span><strong>Reliance Jio</strong></li>
+            </ol>
+          </a>
+
+          <a class="dashboard-card cloud-card spotlight-card" href="#skills" aria-label="Go to capabilities and AI platform ecosystem">
+            <div class="card-heading">
+              <div><span class="card-code">Multi-cloud / Multi-model</span><h3>AI platform constellation</h3></div>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="brand-constellation" aria-label="Cloud and AI ecosystem">
+              <span class="brand-logo brand-aws"><i aria-hidden="true">aws</i><b>AWS</b></span>
+              <span class="brand-logo brand-google"><i aria-hidden="true">G</i><b>Google Cloud</b></span>
+              <span class="brand-logo brand-anthropic"><i aria-hidden="true">AI</i><b>Anthropic</b></span>
+              <span class="brand-logo brand-databricks"><i aria-hidden="true">◇</i><b>Databricks</b></span>
+              <span class="brand-logo brand-snowflake"><i aria-hidden="true">✣</i><b>Snowflake</b></span>
+            </div>
+            <p class="radar-label">Platform radar / Emerging ecosystem</p>
+            <div class="platform-radar"><span>Bedrock AgentCore</span><span>Gemini Enterprise</span><span>Google Antigravity</span><span>Gemini 3 Pro</span><span>Gemini Code Assist</span><span>Agent Development Kit</span><span>Claude Enterprise</span></div>
+          </a>
+
+          <a class="dashboard-card education-card spotlight-card" href="#education" aria-label="Go to education and industry engagement">
+            <div class="card-heading">
+              <div><span class="card-code">3 degrees</span><h3>Education</h3></div>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="education-list">
+              <div><span>In progress</span><strong>MS · Artificial Intelligence</strong><small>UT Austin</small></div>
+              <div><span>2020</span><strong>MS · Business Analytics</strong><small>UConn</small></div>
+              <div><span>2014</span><strong>BTech · ECE</strong><small>NIT Hamirpur</small></div>
+            </div>
+          </a>
+
+          <nav class="dashboard-card route-card" aria-label="Portfolio highlights">
+            <span class="card-code">Explore portfolio</span>
+            <a href="#work"><span>Selected systems</span><strong>5 case studies</strong><b aria-hidden="true">↗</b></a>
+            <a href="#credentials"><span>Credentials</span><strong>12 current</strong><b aria-hidden="true">↗</b></a>
+            <a href="#patent"><span>Intellectual property</span><strong>US patent</strong><b aria-hidden="true">↗</b></a>
+            <a href="#insights"><span>Public work</span><strong>GitHub · Tableau · DEV</strong><b aria-hidden="true">↗</b></a>
+          </nav>
+        </div>
       </div>
     </section>
 
@@ -193,7 +276,7 @@
 
       <div class="skill-matrix">
         <article class="skill-card spotlight-card reveal"><span>AI/01</span><h3>GenAI &amp; LLMs</h3><p>RAG, AI agents, context engineering, evaluation, guardrails, prompt design</p></article>
-        <article class="skill-card spotlight-card reveal" data-delay="1"><span>AI/02</span><h3>AI Platforms</h3><p>AWS Bedrock, Vertex AI, LangChain, LangGraph, MCP, Claude</p></article>
+        <article class="skill-card spotlight-card reveal" data-delay="1"><span>AI/02</span><h3>AI Platforms</h3><p>AWS Bedrock &amp; AgentCore, Gemini Enterprise, Vertex AI, Google Antigravity, Anthropic Claude, LangGraph, ADK, MCP</p></article>
         <article class="skill-card spotlight-card reveal" data-delay="2"><span>DATA/03</span><h3>Data Platforms</h3><p>Databricks, Snowflake, Spark, Airflow, ETL/ELT, streaming</p></article>
         <article class="skill-card spotlight-card reveal"><span>CLOUD/04</span><h3>Cloud &amp; Infrastructure</h3><p>AWS, Google Cloud, Kubernetes, Docker, Terraform</p></article>
         <article class="skill-card spotlight-card reveal" data-delay="1"><span>ARCH/05</span><h3>Architecture</h3><p>Microservices, event-driven systems, APIs, MLOps, LLMOps</p></article>
@@ -455,12 +538,12 @@
         <h2 id="contact-title">Let's turn it into a system that ships.</h2>
         <p>I'm always interested in thoughtful conversations about forward-deployed engineering, enterprise AI architecture and high-impact delivery.</p>
         <a class="contact-email" href="mailto:kommanamanchi.agastya@gmail.com">kommanamanchi.agastya@gmail.com <span aria-hidden="true">↗</span></a>
-        <div class="contact-links">
-          <a href="https://www.linkedin.com/in/agastya-kommanamanchi/" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href="https://github.com/agstya" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="https://www.credly.com/users/agastya/badges/credly" target="_blank" rel="noreferrer">Credly</a>
-          <a href="https://public.tableau.com/app/profile/agastya.kommanamanchi" target="_blank" rel="noreferrer">Tableau</a>
-          <a href="https://dev.to/agastya_kommanamanchi_d4f" target="_blank" rel="noreferrer">DEV</a>
+        <div class="contact-links" aria-label="Professional profiles">
+          <a href="https://www.linkedin.com/in/agastya-kommanamanchi/" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-linkedin"></use></svg><span>LinkedIn</span></a>
+          <a href="https://github.com/agstya" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-github"></use></svg><span>GitHub</span></a>
+          <a href="https://www.credly.com/users/agastya/badges/credly" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-credly"></use></svg><span>Credly</span></a>
+          <a href="https://public.tableau.com/app/profile/agastya.kommanamanchi" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-tableau"></use></svg><span>Tableau</span></a>
+          <a href="https://dev.to/agastya_kommanamanchi_d4f" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-dev"></use></svg><span>DEV</span></a>
         </div>
       </div>
     </section>

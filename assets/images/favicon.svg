@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AK neural monogram">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071425"/>
+      <stop offset="1" stop-color="#11102d"/>
+    </linearGradient>
+    <linearGradient id="line" x1="14" y1="14" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#27dff5"/>
+      <stop offset="1" stop-color="#9b6cff"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="17" fill="url(#bg)"/>
+  <path d="M16 46 28 17l12 29M20.8 35h14.4M40 17v29M40 34l10-17M40 34l11 12" fill="none" stroke="url(#line)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="28" cy="17" r="3" fill="#27dff5"/>
+  <circle cx="50" cy="17" r="3" fill="#8f7cff"/>
+  <circle cx="51" cy="46" r="3" fill="#9b6cff"/>
+  <rect x="2.75" y="2.75" width="58.5" height="58.5" rx="16.25" fill="none" stroke="#74ecff" stroke-opacity=".32" stroke-width="1.5"/>
+</svg>

@@ -8,7 +8,10 @@
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  if (!finePointer.matches || reducedMotion.matches) document.body.classList.add("skip-reveals");
   const themeToggle = document.querySelector(".theme-toggle");
+  const themeIcon = themeToggle?.querySelector(".theme-icon");
+  const themeLabel = themeToggle?.querySelector(".theme-label");
   const themeMeta = document.querySelector('meta[name="theme-color"]');
   const menuToggle = document.querySelector(".menu-toggle");
   const navLinks = document.getElementById("nav-links");
@@ -28,8 +31,10 @@
   function setTheme(theme, persist) {
     const nextTheme = theme === "light" ? "light" : "dark";
     document.documentElement.dataset.theme = nextTheme;
-    themeToggle?.setAttribute("aria-label", `Switch to ${nextTheme === "dark" ? "light" : "dark"} mode`);
+    themeToggle?.setAttribute("aria-label", `${nextTheme === "dark" ? "Dark" : "Light"} theme active. Switch to ${nextTheme === "dark" ? "light" : "dark"} mode`);
     themeToggle?.setAttribute("title", `Switch to ${nextTheme === "dark" ? "light" : "dark"} mode`);
+    if (themeIcon) themeIcon.textContent = nextTheme === "dark" ? "☾" : "☀";
+    if (themeLabel) themeLabel.textContent = nextTheme === "dark" ? "Dark" : "Light";
     if (themeMeta) themeMeta.content = nextTheme === "dark" ? "#06080f" : "#f4f8fb";
     if (persist) localStorage.setItem("agastya-theme", nextTheme);
   }
@@ -37,11 +42,6 @@
   setTheme(document.documentElement.dataset.theme, false);
   themeToggle?.addEventListener("click", () => {
     setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark", true);
-  });
-
-  const systemTheme = window.matchMedia("(prefers-color-scheme: light)");
-  systemTheme.addEventListener?.("change", (event) => {
-    if (!localStorage.getItem("agastya-theme")) setTheme(event.matches ? "light" : "dark", false);
   });
 
   function closeMenu() {
@@ -69,6 +69,27 @@
 
   document.addEventListener("click", (event) => {
     if (!navLinks?.contains(event.target) && !menuToggle?.contains(event.target)) closeMenu();
+  });
+
+  function alignHashTarget(hash, behavior = "auto") {
+    if (!hash || hash === "#") return;
+    const target = document.querySelector(hash);
+    target?.scrollIntoView({ behavior, block: "start" });
+  }
+
+  document.addEventListener("click", (event) => {
+    const anchor = event.target.closest('a[href^="#"]');
+    if (!anchor || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const hash = anchor.getAttribute("href");
+    if (!hash || hash === "#" || !document.querySelector(hash)) return;
+    event.preventDefault();
+    history.pushState(null, "", hash);
+    alignHashTarget(hash, reducedMotion.matches ? "auto" : "smooth");
+    window.setTimeout(() => alignHashTarget(hash), reducedMotion.matches ? 0 : 850);
+  });
+
+  window.addEventListener("load", () => {
+    if (location.hash) window.setTimeout(() => alignHashTarget(location.hash), 80);
   });
 
   const credentialMarkup = (credential) => `
@@ -217,6 +238,7 @@
     : null;
 
   function observeReveals(root = document) {
+    if (document.body.classList.contains("skip-reveals")) return;
     root.querySelectorAll(".reveal:not(.is-visible)").forEach((element) => {
       if (revealObserver) revealObserver.observe(element);
       else element.classList.add("is-visible");
@@ -236,7 +258,7 @@
     .map((link) => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
 
-  if ("IntersectionObserver" in window) {
+  if (finePointer.matches && "IntersectionObserver" in window) {
     const navObserver = new IntersectionObserver((entries) => {
       const visible = entries
         .filter((entry) => entry.isIntersecting)
