@@ -104,32 +104,47 @@
 
   const credentialGrid = document.getElementById("credential-grid");
   const expiredCredentialGrid = document.getElementById("expired-credential-grid");
-  if (credentialGrid) credentialGrid.innerHTML = data.credentials.active.map(credentialMarkup).join("");
-  if (expiredCredentialGrid) expiredCredentialGrid.innerHTML = data.credentials.expired.map(credentialMarkup).join("");
+
+  function renderCredentials() {
+    if (credentialGrid) {
+      credentialGrid.innerHTML = data.credentials.active.map(credentialMarkup).join("");
+      observeReveals(credentialGrid);
+    }
+    if (expiredCredentialGrid) {
+      expiredCredentialGrid.innerHTML = data.credentials.expired.map(credentialMarkup).join("");
+      observeReveals(expiredCredentialGrid);
+    }
+  }
 
   const articleGrid = document.getElementById("article-grid");
-  if (articleGrid) {
+
+  function renderArticles() {
+    if (!articleGrid) return;
     articleGrid.innerHTML = data.articles.map((article, index) => `
-      <article class="article-card spotlight-card reveal" data-delay="${index % 3}">
-        <a href="${escapeHtml(article.url)}" target="_blank" rel="noreferrer">
-          <div class="article-meta"><span>${escapeHtml(article.date)}</span><span>${escapeHtml(article.readTime)}</span></div>
-          <h4>${escapeHtml(article.title)}</h4>
-          <p>${escapeHtml(article.description)}</p>
-          <div class="article-tags" aria-label="Article topics">${article.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>
-        </a>
-      </article>`).join("");
+        <article class="article-card spotlight-card reveal" data-delay="${index % 3}">
+          <a href="${escapeHtml(article.url)}" target="_blank" rel="noreferrer">
+            <div class="article-meta"><span>${escapeHtml(article.date)}</span><span>${escapeHtml(article.readTime)}</span></div>
+            <h4>${escapeHtml(article.title)}</h4>
+            <p>${escapeHtml(article.description)}</p>
+            <div class="article-tags" aria-label="Article topics">${article.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>
+          </a>
+        </article>`).join("");
+    observeReveals(articleGrid);
   }
 
   const tableauGrid = document.getElementById("tableau-grid");
-  if (tableauGrid) {
+
+  function renderTableau() {
+    if (!tableauGrid) return;
     tableauGrid.innerHTML = data.tableau.map((item, index) => `
-      <article class="tableau-card reveal" data-delay="${index % 3}" data-tableau-group="${escapeHtml(item.group)}">
-        <a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer" aria-label="${item.exact ? "Open" : "Find"} ${escapeHtml(item.title)} on Tableau Public">
-          <span class="tableau-index">${String(index + 1).padStart(2, "0")} / 10</span>
-          <h4>${escapeHtml(item.title)}</h4>
-          <p>${escapeHtml(item.category)} · ${item.exact ? "Direct view ↗" : "Profile view ↗"}</p>
-        </a>
-      </article>`).join("");
+        <article class="tableau-card reveal" data-delay="${index % 3}" data-tableau-group="${escapeHtml(item.group)}">
+          <a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer" aria-label="${item.exact ? "Open" : "Find"} ${escapeHtml(item.title)} on Tableau Public">
+            <span class="tableau-index">${String(index + 1).padStart(2, "0")} / 10</span>
+            <h4>${escapeHtml(item.title)}</h4>
+            <p>${escapeHtml(item.category)} · ${item.exact ? "Direct view ↗" : "Profile view ↗"}</p>
+          </a>
+        </article>`).join("");
+    observeReveals(tableauGrid);
   }
 
   const tableauFilterButtons = [...document.querySelectorAll("[data-tableau-filter]")];
@@ -245,8 +260,52 @@
     });
   }
 
-  renderRepositories();
   observeReveals();
+
+  const collectionGroups = [
+    { target: document.getElementById("credentials"), initialize: renderCredentials },
+    { target: document.getElementById("open-source"), initialize: renderRepositories },
+    {
+      target: document.getElementById("insights"),
+      initialize() {
+        renderArticles();
+        renderTableau();
+      }
+    }
+  ].filter((group) => group.target).map((group) => ({ ...group, initialized: false }));
+
+  function initializeCollection(group) {
+    if (!group || group.initialized) return;
+    group.initialized = true;
+    group.initialize();
+  }
+
+  function initializeHashCollection() {
+    if (!location.hash || location.hash === "#") return;
+    const target = document.querySelector(location.hash);
+    const group = collectionGroups.find((item) => item.target === target || item.target.contains(target));
+    initializeCollection(group);
+  }
+
+  initializeHashCollection();
+  window.addEventListener("hashchange", () => {
+    initializeHashCollection();
+    window.requestAnimationFrame(() => alignHashTarget(location.hash));
+  });
+
+  if ("IntersectionObserver" in window) {
+    const collectionObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const group = collectionGroups.find((item) => item.target === entry.target);
+        initializeCollection(group);
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: "800px 0px", threshold: 0 });
+    collectionGroups.forEach((group) => collectionObserver.observe(group.target));
+  } else {
+    collectionGroups.forEach(initializeCollection);
+  }
 
   const header = document.querySelector(".site-header");
   const updateHeader = () => header?.classList.toggle("scrolled", window.scrollY > 18);
