@@ -809,8 +809,9 @@ ul {
 .identity-photo {
   position: relative;
   z-index: 1;
-  width: clamp(190px, 16vw, 238px);
-  margin-bottom: 24px;
+  width: 100%;
+  max-width: none;
+  margin-bottom: 28px;
   padding: 6px;
   background: linear-gradient(145deg, rgba(var(--cyan-rgb), 0.8), rgba(var(--violet-rgb), 0.62));
   border-radius: 28px;
@@ -2694,7 +2695,7 @@ a.dashboard-card:hover {
     padding-top: calc(var(--header-height) + 28px);
   }
   .identity-panel { align-items: center; text-align: center; }
-  .identity-photo { margin-inline: auto; }
+  .identity-photo { width: min(100%, 380px); margin-inline: auto; }
   .dashboard-hero .identity-panel h1 { max-width: 620px; font-size: clamp(2.6rem, 7vw, 4.6rem); }
   .dashboard-hero .hero-summary { margin-inline: auto; }
   .identity-signals { width: min(100%, 480px); }
