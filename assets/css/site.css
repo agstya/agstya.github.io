@@ -1351,6 +1351,86 @@ a.dashboard-card:hover {
   font-size: 1.02rem;
 }
 
+.intro-video-section {
+  padding-top: clamp(90px, 10vw, 140px);
+  background:
+    radial-gradient(650px circle at 78% 25%, rgba(var(--violet-rgb), 0.09), transparent 60%),
+    radial-gradient(560px circle at 18% 78%, rgba(var(--cyan-rgb), 0.07), transparent 62%);
+}
+
+.intro-video-stage {
+  overflow: hidden;
+  background: #06080f;
+  border: 1px solid var(--line-strong);
+  border-radius: 30px;
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.24), 0 0 70px rgba(var(--cyan-rgb), 0.07);
+}
+
+.intro-video-stage video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #06080f;
+  object-fit: contain;
+}
+
+.intro-video-meta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.58fr);
+  gap: 26px;
+  align-items: start;
+  padding: 20px 24px 23px;
+  color: #cbd5e5;
+  background: rgba(8, 12, 22, 0.98);
+  border-top: 1px solid rgba(215, 228, 255, 0.12);
+}
+
+.intro-video-meta p {
+  margin: 6px 0 0;
+  color: #9ba8bd;
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.video-duration {
+  color: #37e6ff;
+  font-size: 0.65rem;
+  font-weight: 820;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.video-transcript {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(215, 228, 255, 0.12);
+  border-radius: 13px;
+}
+
+.video-transcript summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+  color: #f4f7ff;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 760;
+  list-style: none;
+}
+
+.video-transcript summary::-webkit-details-marker { display: none; }
+.video-transcript summary::marker { content: ""; }
+.video-transcript[open] summary span { transform: rotate(45deg); }
+
+.video-transcript > p {
+  margin: 0;
+  padding: 0 14px 15px;
+  color: #b9c4d7;
+  font-size: 0.74rem;
+  line-height: 1.65;
+}
+
 .about-layout {
   display: grid;
   grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.28fr);
@@ -2807,6 +2887,8 @@ a.dashboard-card:hover {
   .ambient { display: none; }
   .section-shell { width: min(calc(100% - 28px), var(--max-width)); }
   .section { padding-block: 86px; }
+  .intro-video-meta { grid-template-columns: 1fr; gap: 14px; padding: 17px; }
+  .intro-video-stage { border-radius: 20px; }
   .hero { padding-top: calc(var(--header-height) + 64px); padding-bottom: 64px; }
   .dashboard-hero {
     width: min(calc(100% - 28px), 760px);

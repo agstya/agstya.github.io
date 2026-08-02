@@ -1,0 +1,7 @@
+Hi, I’m Agastya Kommanamanchi, a forward-deployed engineer who turns ambitious AI, data, and cloud priorities into secure systems that ship.
+
+For more than a decade, I’ve built enterprise platforms—from recommendations serving more than 50 million users to generative AI workflows achieving over 95 percent task success.
+
+I love forward-deployed engineering because it keeps me close to the real problem. I sit with users, understand the workflow, make architecture tangible, and stay accountable from prototype through production and adoption.
+
+I bring hands-on engineering, product judgment, and executive communication. If you’re building high-impact enterprise AI, I’d love to help turn the idea into a measurable outcome.

@@ -4,4 +4,3 @@ A fast, accessible, dependency-free portfolio built with semantic HTML, modern C
 
 
 
-
