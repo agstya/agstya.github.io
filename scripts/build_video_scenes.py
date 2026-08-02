@@ -111,7 +111,7 @@ scenes = []
 
 scene = base_canvas("agastya-casual.jpg", crop_shift=-28)
 draw = ImageDraw.Draw(scene, "RGBA")
-eyebrow(draw, "Meet Agastya / 52-second introduction")
+eyebrow(draw, "Meet Agastya / 43-second introduction")
 heading(draw, "Strategy to\nshipped systems.", y=132, size=62)
 body(draw, "Forward-deployed engineering across AI, data and cloud—built for secure production and measurable adoption.", 340)
 draw.rounded_rectangle((650, 510, 1145, 566), radius=16, fill=(13, 18, 30, 205), outline=(*CYAN, 65), width=2)
