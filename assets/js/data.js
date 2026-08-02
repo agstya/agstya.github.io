@@ -86,6 +86,26 @@ window.PORTFOLIO_DATA = {
         mark: "TB"
       }
     ],
+    professional: [
+      {
+        name: "Professional Cloud Architect",
+        issuer: "Google Cloud",
+        status: "Professional certification",
+        mark: "GC"
+      },
+      {
+        name: "Professional Machine Learning Engineer",
+        issuer: "Google Cloud",
+        status: "Professional certification",
+        mark: "GC"
+      },
+      {
+        name: "Claude 101, Claude Code in Action & AI Fluency",
+        issuer: "Anthropic Academy",
+        status: "Completed professional training",
+        mark: "AI"
+      }
+    ],
     expired: [
       {
         name: "HashiCorp Certified: Terraform Associate (003)",

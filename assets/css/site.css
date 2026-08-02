@@ -788,9 +788,11 @@ ul {
 }
 
 .identity-panel {
+  --identity-pad-x: clamp(24px, 3vw, 36px);
+  --identity-pad-y: clamp(24px, 3vw, 36px);
   display: flex;
   flex-direction: column;
-  padding: clamp(24px, 3vw, 36px);
+  padding: var(--identity-pad-y) var(--identity-pad-x);
 }
 
 .identity-panel::after {
@@ -809,21 +811,19 @@ ul {
 .identity-photo {
   position: relative;
   z-index: 1;
-  width: 100%;
+  width: calc(100% + (2 * var(--identity-pad-x)));
   max-width: none;
-  margin-bottom: 28px;
-  padding: 6px;
-  background: linear-gradient(145deg, rgba(var(--cyan-rgb), 0.8), rgba(var(--violet-rgb), 0.62));
-  border-radius: 28px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25), 0 0 50px rgba(var(--cyan-rgb), 0.1);
-  transform-style: preserve-3d;
+  margin: calc(-1 * var(--identity-pad-y)) calc(-1 * var(--identity-pad-x)) 28px;
+  overflow: hidden;
+  background: none;
+  border-radius: 29px 29px 0 0;
 }
 
 .identity-photo picture {
   display: block;
   overflow: hidden;
-  background: var(--surface);
-  border-radius: 22px;
+  background: none;
+  border-radius: inherit;
 }
 
 .identity-photo img {
@@ -1360,18 +1360,17 @@ a.dashboard-card:hover {
 
 .about-photo {
   position: relative;
-  padding: 10px;
-  background: linear-gradient(150deg, rgba(var(--violet-rgb), 0.28), rgba(var(--cyan-rgb), 0.24));
-  border: 1px solid var(--line);
-  border-radius: 28px;
-  transform: rotate(-2deg);
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 24px;
 }
 
 .about-photo picture {
   display: block;
   overflow: hidden;
   aspect-ratio: 0.92;
-  border-radius: 20px;
+  border-radius: inherit;
 }
 
 .about-photo img {
@@ -2000,59 +1999,119 @@ a.dashboard-card:hover {
 
 .text-link:hover { gap: 15px; color: var(--text); }
 
-.credential-grid {
+.credential-groups {
+  display: grid;
+  gap: 14px;
+}
+
+.credential-provider {
+  overflow: hidden;
+  background: var(--surface-glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.06);
+}
+
+.credential-provider-header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 17px 18px;
+  background: linear-gradient(115deg, rgba(var(--cyan-rgb), 0.055), rgba(var(--violet-rgb), 0.035));
+  border-bottom: 1px solid var(--line);
+}
+
+.credential-provider-header > div > span {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--muted);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.credential-provider-header h3 {
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+.credential-provider-header > strong {
+  color: var(--muted-strong);
+  font-size: 0.68rem;
+  font-weight: 760;
+}
+
+.provider-logo {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+  font-family: Arial, sans-serif;
+  font-size: 0.73rem;
+  font-weight: 850;
+  letter-spacing: -0.04em;
+}
+
+.provider-logo-google {
+  background: conic-gradient(from -45deg, #4285f4 0 25%, #34a853 0 45%, #fbbc05 0 70%, #ea4335 0 84%, #4285f4 0);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-size: 1.65rem;
+}
+
+.provider-logo-aws { color: #ff9900; font-size: 0.9rem; letter-spacing: -0.08em; text-transform: lowercase; }
+.provider-logo-tableau { color: #2f80ed; font-size: 1.55rem; }
+.provider-logo-intel { color: #0875c1; font-size: 0.72rem; text-transform: lowercase; }
+.provider-logo-mongodb { color: #13aa52; font-size: 1.65rem; transform: rotate(-24deg); }
+.provider-logo-anthropic { color: var(--text); font-size: 0.9rem; }
+.provider-logo-hashicorp { color: #6b5ce7; font-size: 1.2rem; }
+
+.credential-provider-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  gap: 1px;
+  background: var(--line);
 }
 
 .credential-card {
   display: flex;
-  min-height: 190px;
-  padding: 24px;
-  border-radius: var(--radius-md);
+  min-height: 146px;
+  padding: 0;
+  background: var(--surface);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-.credential-card a {
+.credential-card a,
+.credential-card-body {
   display: flex;
   flex: 1;
   flex-direction: column;
+  padding: 18px;
 }
 
-.credential-details {
-  margin-top: 12px;
-}
-
-.credential-details .credential-grid {
-  padding: 0 12px 12px;
-}
-
-.credential-mark {
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  margin-bottom: 30px;
+.credential-type {
+  margin-bottom: 20px;
   color: var(--cyan);
-  background: linear-gradient(135deg, rgba(var(--cyan-rgb), 0.12), rgba(var(--violet-rgb), 0.08));
-  border: 1px solid var(--line-strong);
-  border-radius: 14px;
-  font-size: 0.68rem;
-  font-weight: 850;
-  letter-spacing: 0.06em;
+  font-size: 0.58rem;
+  font-weight: 820;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.credential-card h3 {
-  margin-bottom: 8px;
-  font-size: 1.05rem;
-  line-height: 1.2;
-}
-
-.credential-card .issuer {
+.credential-card h4 {
   margin-bottom: 18px;
-  color: var(--muted);
-  font-size: 0.76rem;
-  line-height: 1.45;
+  font-size: 0.91rem;
+  line-height: 1.28;
 }
 
 .credential-status {
@@ -2075,39 +2134,9 @@ a.dashboard-card:hover {
   box-shadow: 0 0 10px currentColor;
 }
 
-.credential-status span { margin-left: auto; color: var(--muted); }
+.credential-status span { margin-left: auto; color: var(--muted); text-align: right; }
 
 .archived .credential-status { color: var(--danger); }
-
-.resume-credentials {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 12px;
-}
-
-.resume-credentials div {
-  padding: 20px 22px;
-  background: rgba(var(--violet-rgb), 0.045);
-  border: 1px dashed rgba(var(--violet-rgb), 0.24);
-  border-radius: 14px;
-}
-
-.resume-credentials span {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--violet);
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.resume-credentials strong {
-  color: var(--text-soft);
-  font-size: 0.82rem;
-  line-height: 1.4;
-}
 
 .credential-archive {
   margin-top: 28px;
@@ -2133,9 +2162,8 @@ a.dashboard-card:hover {
   font-weight: 600;
 }
 
-.credential-archive .credential-grid {
-  padding: 0 12px 12px;
-}
+.credential-archive .credential-groups { padding: 0 10px 10px; }
+.credential-archive .credential-provider { margin-top: 10px; box-shadow: none; }
 
 .profile-link { margin-top: 26px; }
 
@@ -2194,15 +2222,18 @@ a.dashboard-card:hover {
 
 .repo-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  align-items: start;
 }
 
 .repo-card {
-  min-height: 245px;
-  padding: 24px;
+  min-height: 0;
+  padding: 0;
   border-radius: var(--radius-md);
 }
+
+.repo-card.expanded { grid-column: span 2; }
 
 .repo-card.featured {
   background:
@@ -2226,17 +2257,30 @@ a.dashboard-card:hover {
   text-align: center;
 }
 
-.repo-card a {
+.repo-card details { height: 100%; }
+
+.repo-card summary {
   display: flex;
-  height: 100%;
+  min-height: 150px;
   flex-direction: column;
+  padding: 18px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.repo-card summary::-webkit-details-marker { display: none; }
+.repo-card summary::marker { content: ""; }
+
+.repo-card summary:focus-visible {
+  outline: 3px solid rgba(var(--cyan-rgb), 0.28);
+  outline-offset: -3px;
 }
 
 .repo-top {
   display: flex;
   justify-content: space-between;
   gap: 14px;
-  margin-bottom: 42px;
+  margin-bottom: 24px;
 }
 
 .repo-kind,
@@ -2255,30 +2299,70 @@ a.dashboard-card:hover {
 .repo-kind.original { color: var(--green); border-color: rgba(98, 246, 180, 0.2); }
 
 .repo-card h3 {
-  margin-bottom: 10px;
+  margin: 0;
   overflow-wrap: anywhere;
   font-size: 1.1rem;
   line-height: 1.25;
 }
 
-.repo-card p {
-  margin-bottom: 22px;
+.repo-summary-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 20px;
+  color: var(--muted);
+  font-size: 0.66rem;
+}
+
+.repo-expand {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  place-items: center;
+  color: var(--cyan);
+  background: rgba(var(--cyan-rgb), 0.07);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-size: 1rem;
+  transition: transform 180ms ease, color 180ms ease, background-color 180ms ease;
+}
+
+.repo-card details[open] .repo-expand {
+  color: var(--surface);
+  background: var(--cyan);
+  transform: rotate(45deg);
+}
+
+.repo-detail {
+  padding: 17px 18px 18px;
+  border-top: 1px solid var(--line);
+}
+
+.repo-detail p {
+  margin-bottom: 16px;
   color: var(--muted);
   font-size: 0.8rem;
   line-height: 1.55;
 }
 
-.repo-bottom {
+.repo-open-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 15px;
-  margin-top: auto;
-  color: var(--muted);
-  font-size: 0.66rem;
+  padding: 10px 12px;
+  color: var(--text-soft);
+  background: rgba(var(--cyan-rgb), 0.055);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  font-size: 0.72rem;
+  font-weight: 760;
 }
 
-.repo-arrow { color: var(--cyan); font-size: 1rem; }
+.repo-open-link span { color: var(--cyan); font-size: 1rem; }
 
 .repo-footer {
   display: flex;
@@ -2640,7 +2724,7 @@ a.dashboard-card:hover {
   .hero h1 { font-size: clamp(3.15rem, 6.4vw, 5.4rem); }
   .dashboard-hero { grid-template-columns: minmax(285px, 0.62fr) minmax(0, 1.38fr); gap: 12px; }
   .dashboard-hero .identity-panel h1 { font-size: clamp(2rem, 3.2vw, 2.75rem); }
-  .identity-panel { padding: 24px; }
+  .identity-panel { --identity-pad-x: 24px; --identity-pad-y: 24px; padding: var(--identity-pad-y) var(--identity-pad-x); }
   .executive-dashboard { padding: 19px; }
   .outcome-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .outcome-item span { min-height: auto; }
@@ -2652,7 +2736,7 @@ a.dashboard-card:hover {
   .route-card a:last-child { border-bottom: 1px solid var(--line); }
   .skill-matrix { grid-template-columns: repeat(2, 1fr); }
   .tableau-grid { grid-template-columns: repeat(3, 1fr); }
-  .credential-grid { grid-template-columns: repeat(2, 1fr); }
+  .credential-provider-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .repo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .chip-one, .chip-three { left: -3%; }
   .chip-two { right: -3%; }
@@ -2695,7 +2779,7 @@ a.dashboard-card:hover {
     padding-top: calc(var(--header-height) + 28px);
   }
   .identity-panel { align-items: center; text-align: center; }
-  .identity-photo { width: min(100%, 380px); margin-inline: auto; }
+  .identity-photo { width: calc(100% + (2 * var(--identity-pad-x))); margin: calc(-1 * var(--identity-pad-y)) calc(-1 * var(--identity-pad-x)) 28px; }
   .dashboard-hero .identity-panel h1 { max-width: 620px; font-size: clamp(2.6rem, 7vw, 4.6rem); }
   .dashboard-hero .hero-summary { margin-inline: auto; }
   .identity-signals { width: min(100%, 480px); }
@@ -2730,7 +2814,7 @@ a.dashboard-card:hover {
     padding-bottom: 28px;
   }
   .identity-panel, .executive-dashboard { border-radius: 24px; }
-  .identity-panel { padding: 24px 19px; }
+  .identity-panel { --identity-pad-x: 19px; --identity-pad-y: 24px; padding: var(--identity-pad-y) var(--identity-pad-x); }
   .dashboard-intro { grid-template-columns: 1fr; gap: 10px; padding-bottom: 17px; }
   .dashboard-intro h2 { font-size: clamp(2.2rem, 11vw, 3.45rem); }
   .dashboard-grid { grid-template-columns: 1fr; }
@@ -2767,11 +2851,12 @@ a.dashboard-card:hover {
   .case-featured h3 { font-size: clamp(2.25rem, 11vw, 3.6rem); }
   .case-top, .case-card:not(.case-featured) .case-top, .case-wide .case-top { margin-bottom: 55px; }
   .patent-content dl { grid-template-columns: 1fr; }
-  .credential-grid, .resume-credentials { grid-template-columns: 1fr; }
-  .credential-archive .credential-grid { padding: 0 8px 8px; }
+  .credential-provider-grid { grid-template-columns: 1fr; }
+  .credential-archive .credential-groups { padding: 0 8px 8px; }
   .repo-toolbar { align-items: stretch; flex-direction: column; }
   .repo-search input { width: 100%; }
   .repo-grid { grid-template-columns: 1fr; }
+  .repo-card.expanded { grid-column: 1; }
   .repo-footer { flex-wrap: wrap; }
   .repo-footer p { width: 100%; margin: 0; text-align: center; }
   .tableau-grid { grid-template-columns: repeat(2, 1fr); }
@@ -2799,7 +2884,10 @@ a.dashboard-card:hover {
   .role-line { flex-direction: column; }
   .current-pill { margin-bottom: 14px; }
   .patent-card { padding: 28px 20px; }
-  .credential-card, .repo-card, .article-card { padding: 21px; }
+  .article-card { padding: 21px; }
+  .credential-card a, .credential-card-body { padding: 16px; }
+  .credential-provider-header { grid-template-columns: auto minmax(0, 1fr); }
+  .credential-provider-header > strong { grid-column: 2; }
   .filter-group { display: grid; grid-template-columns: repeat(3, 1fr); }
   .repo-toolbar .filter-group { grid-template-columns: 1.35fr 0.7fr 0.8fr; }
   .tableau-filters { grid-template-columns: repeat(2, 1fr); }

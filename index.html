@@ -129,7 +129,7 @@
   <main id="main-content" tabindex="-1">
     <section class="hero dashboard-hero" aria-labelledby="hero-title">
       <div class="identity-panel reveal">
-        <div class="identity-photo tilt-card">
+        <div class="identity-photo">
           <picture>
             <source srcset="assets/images/agastya-casual.webp" type="image/webp">
             <img src="assets/images/agastya-casual.jpg" width="1000" height="1000" alt="Agastya Kommanamanchi in a modern office" fetchpriority="high">
@@ -139,7 +139,7 @@
 
         <p class="identity-name">Agastya Kommanamanchi</p>
         <div class="eyebrow">Forward-Deployed Engineer at Deloitte</div>
-        <h1 id="hero-title" aria-label="Forward-Deployed Engineer"><span aria-hidden="true">FDE.</span></h1>
+        <h1 id="hero-title" class="sr-only">Agastya Kommanamanchi — Forward-Deployed Engineer</h1>
         <p class="hero-summary">I turn ambitious AI, data and cloud priorities into secure production platforms, measurable outcomes and enterprise adoption.</p>
 
         <div class="identity-signals" aria-label="Professional summary">
@@ -470,25 +470,14 @@
       <div class="section-heading reveal">
         <span class="section-number">05 / Credentials</span>
         <h2 id="credentials-title">Verified, current and continuously learning.</h2>
-        <p>Public credentials verified through Credly, plus résumé-listed professional certifications and training.</p>
+        <p>12 current public credentials, two professional certifications and completed Anthropic training—organized by provider for quick review.</p>
       </div>
 
-      <div class="credential-grid" id="credential-grid" aria-live="polite"></div>
-
-      <details class="credential-details collection-details reveal">
-        <summary><span>View all current credentials</span><span>6 more • 12 total</span></summary>
-        <div class="credential-grid" id="credential-more-grid"></div>
-      </details>
-
-      <div class="resume-credentials reveal">
-        <div><span>Résumé-listed certification</span><strong>Google Cloud Professional Cloud Architect</strong></div>
-        <div><span>Résumé-listed certification</span><strong>Google Cloud Professional Machine Learning Engineer</strong></div>
-        <div><span>Professional training</span><strong>Anthropic Academy: Claude 101, Claude Code in Action, AI Fluency</strong></div>
-      </div>
+      <div class="credential-groups" id="credential-groups" aria-live="polite"></div>
 
       <details class="credential-archive reveal">
         <summary><span>Credential archive</span><span>3 expired credentials</span></summary>
-        <div class="credential-grid archived" id="expired-credential-grid"></div>
+        <div class="credential-groups archived" id="expired-credential-groups"></div>
       </details>
 
       <a class="text-link profile-link reveal" href="https://www.credly.com/users/agastya/badges/credly" target="_blank" rel="noreferrer">Open the complete Credly wallet <span aria-hidden="true">↗</span></a>

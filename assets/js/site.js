@@ -92,32 +92,83 @@
     if (location.hash) window.setTimeout(() => alignHashTarget(location.hash), 80);
   });
 
-  const credentialMarkup = (credential) => `
-    <article class="credential-card spotlight-card reveal">
-      <a href="${escapeHtml(credential.url)}" target="_blank" rel="noreferrer" aria-label="Verify ${escapeHtml(credential.name)} on Credly">
-        <span class="credential-mark" aria-hidden="true">${escapeHtml(credential.mark)}</span>
-        <h3>${escapeHtml(credential.name)}</h3>
-        <p class="issuer">${escapeHtml(credential.issuer)}</p>
-        <div class="credential-status">${credential.status.startsWith("Expired") ? "Archived" : "Verified"}<span>${escapeHtml(credential.status)}</span></div>
-      </a>
-    </article>`;
+  const providerOrder = ["google", "aws", "tableau", "intel", "mongodb", "anthropic", "hashicorp"];
+  const providerMeta = {
+    google: { name: "Google Cloud", mark: "G" },
+    aws: { name: "AWS", mark: "aws" },
+    tableau: { name: "Tableau", mark: "✣" },
+    intel: { name: "Intel", mark: "intel" },
+    mongodb: { name: "MongoDB", mark: "◒" },
+    anthropic: { name: "Anthropic", mark: "AI" },
+    hashicorp: { name: "HashiCorp", mark: "H" }
+  };
 
-  const credentialGrid = document.getElementById("credential-grid");
-  const credentialMoreGrid = document.getElementById("credential-more-grid");
-  const expiredCredentialGrid = document.getElementById("expired-credential-grid");
+  function providerKey(credential) {
+    const value = `${credential.issuer} ${credential.name}`.toLowerCase();
+    if (value.includes("mongo")) return "mongodb";
+    if (value.includes("google")) return "google";
+    if (value.includes("amazon") || value.includes("aws")) return "aws";
+    if (value.includes("tableau")) return "tableau";
+    if (value.includes("intel")) return "intel";
+    if (value.includes("anthropic") || value.includes("claude")) return "anthropic";
+    if (value.includes("hashicorp") || value.includes("terraform")) return "hashicorp";
+    return "other";
+  }
+
+  const credentialMarkup = (credential) => {
+    const archived = credential.status.startsWith("Expired");
+    const professional = !credential.url;
+    const content = `
+      <span class="credential-type">${archived ? "Archived" : professional ? "Professional" : "Credly verified"}</span>
+      <h4>${escapeHtml(credential.name)}</h4>
+      <div class="credential-status">${professional ? "Certification & training" : archived ? "Expired" : "Current"}<span>${escapeHtml(credential.status)}</span></div>`;
+    return `
+      <article class="credential-card spotlight-card">
+        ${credential.url
+          ? `<a href="${escapeHtml(credential.url)}" target="_blank" rel="noreferrer" aria-label="Verify ${escapeHtml(credential.name)} on Credly">${content}</a>`
+          : `<div class="credential-card-body">${content}</div>`}
+      </article>`;
+  };
+
+  function credentialGroupsMarkup(credentials) {
+    const grouped = credentials.reduce((groups, credential) => {
+      const key = providerKey(credential);
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(credential);
+      return groups;
+    }, {});
+    return Object.entries(grouped)
+      .sort(([a], [b]) => {
+        const aIndex = providerOrder.indexOf(a);
+        const bIndex = providerOrder.indexOf(b);
+        return (aIndex < 0 ? 99 : aIndex) - (bIndex < 0 ? 99 : bIndex);
+      })
+      .map(([key, credentialsForProvider]) => {
+        const provider = providerMeta[key] || { name: credentialsForProvider[0].issuer, mark: credentialsForProvider[0].mark };
+        const label = credentialsForProvider.length === 1 ? "credential" : "credentials";
+        return `
+          <section class="credential-provider reveal" data-provider="${escapeHtml(key)}">
+            <header class="credential-provider-header">
+              <span class="provider-logo provider-logo-${escapeHtml(key)}" aria-hidden="true">${escapeHtml(provider.mark)}</span>
+              <div><span>Provider</span><h3>${escapeHtml(provider.name)}</h3></div>
+              <strong>${credentialsForProvider.length} ${label}</strong>
+            </header>
+            <div class="credential-provider-grid">${credentialsForProvider.map(credentialMarkup).join("")}</div>
+          </section>`;
+      }).join("");
+  }
+
+  const credentialGroups = document.getElementById("credential-groups");
+  const expiredCredentialGroups = document.getElementById("expired-credential-groups");
 
   function renderCredentials() {
-    if (credentialGrid) {
-      credentialGrid.innerHTML = data.credentials.active.slice(0, 6).map(credentialMarkup).join("");
-      observeReveals(credentialGrid);
+    if (credentialGroups) {
+      credentialGroups.innerHTML = credentialGroupsMarkup([...data.credentials.active, ...data.credentials.professional]);
+      observeReveals(credentialGroups);
     }
-    if (credentialMoreGrid) {
-      credentialMoreGrid.innerHTML = data.credentials.active.slice(6).map(credentialMarkup).join("");
-      observeReveals(credentialMoreGrid);
-    }
-    if (expiredCredentialGrid) {
-      expiredCredentialGrid.innerHTML = data.credentials.expired.map(credentialMarkup).join("");
-      observeReveals(expiredCredentialGrid);
+    if (expiredCredentialGroups) {
+      expiredCredentialGroups.innerHTML = credentialGroupsMarkup(data.credentials.expired);
+      observeReveals(expiredCredentialGroups);
     }
   }
 
@@ -223,15 +274,20 @@
 
     repoGrid.innerHTML = visible.map((repository, index) => `
       <article class="repo-card spotlight-card reveal ${repository.featured ? "featured" : ""}" data-delay="${index % 3}">
-        <a href="${escapeHtml(repository.url)}" target="_blank" rel="noreferrer">
-          <div class="repo-top">
-            <span class="repo-kind ${repository.fork ? "" : "original"}">${repository.fork ? "Fork / sample" : "Original"}</span>
-            <span class="repo-language">${escapeHtml(repository.language)}</span>
+        <details>
+          <summary>
+            <div class="repo-top">
+              <span class="repo-kind ${repository.fork ? "" : "original"}">${repository.fork ? "Fork / sample" : "Original"}</span>
+              <span class="repo-language">${escapeHtml(repository.language)}</span>
+            </div>
+            <h3>${escapeHtml(repository.name)}</h3>
+            <div class="repo-summary-foot"><span>Updated ${formatDate(repository.updated)}</span><span class="repo-expand" aria-hidden="true">+</span></div>
+          </summary>
+          <div class="repo-detail">
+            <p>${escapeHtml(repository.description)}</p>
+            <a class="repo-open-link" href="${escapeHtml(repository.url)}" target="_blank" rel="noreferrer">Open repository <span aria-hidden="true">↗</span></a>
           </div>
-          <h3>${escapeHtml(repository.name)}</h3>
-          <p>${escapeHtml(repository.description)}</p>
-          <div class="repo-bottom"><span>Updated ${formatDate(repository.updated)}</span><span class="repo-arrow" aria-hidden="true">↗</span></div>
-        </a>
+        </details>
       </article>`).join("");
 
     if (!matches.length) {
@@ -247,6 +303,15 @@
       repoToggle.textContent = showAllRepos ? "Show fewer repositories" : "Show all repositories";
       repoToggle.setAttribute("aria-expanded", String(showAllRepos));
     }
+    repoGrid.querySelectorAll("details").forEach((details) => {
+      details.addEventListener("toggle", () => {
+        details.closest(".repo-card")?.classList.toggle("expanded", details.open);
+        if (!details.open) return;
+        repoGrid.querySelectorAll("details[open]").forEach((other) => {
+          if (other !== details) other.open = false;
+        });
+      });
+    });
     observeReveals(repoGrid);
   }
 
