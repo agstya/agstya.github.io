@@ -103,12 +103,17 @@
     </article>`;
 
   const credentialGrid = document.getElementById("credential-grid");
+  const credentialMoreGrid = document.getElementById("credential-more-grid");
   const expiredCredentialGrid = document.getElementById("expired-credential-grid");
 
   function renderCredentials() {
     if (credentialGrid) {
-      credentialGrid.innerHTML = data.credentials.active.map(credentialMarkup).join("");
+      credentialGrid.innerHTML = data.credentials.active.slice(0, 6).map(credentialMarkup).join("");
       observeReveals(credentialGrid);
+    }
+    if (credentialMoreGrid) {
+      credentialMoreGrid.innerHTML = data.credentials.active.slice(6).map(credentialMarkup).join("");
+      observeReveals(credentialMoreGrid);
     }
     if (expiredCredentialGrid) {
       expiredCredentialGrid.innerHTML = data.credentials.expired.map(credentialMarkup).join("");
@@ -133,34 +138,56 @@
   }
 
   const tableauGrid = document.getElementById("tableau-grid");
+  const tableauCount = document.getElementById("tableau-count");
+  const tableauToggle = document.getElementById("tableau-toggle");
+  const tableauFilterButtons = [...document.querySelectorAll("[data-tableau-filter]")];
+  let activeTableauFilter = "all";
+  let showAllTableau = false;
+
+  function filteredTableau() {
+    return data.tableau.filter((item) => activeTableauFilter === "all" || item.group === activeTableauFilter);
+  }
 
   function renderTableau() {
     if (!tableauGrid) return;
-    tableauGrid.innerHTML = data.tableau.map((item, index) => `
+    const matches = filteredTableau();
+    const visible = showAllTableau ? matches : matches.slice(0, 4);
+    tableauGrid.innerHTML = visible.map((item, index) => `
         <article class="tableau-card reveal" data-delay="${index % 3}" data-tableau-group="${escapeHtml(item.group)}">
           <a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer" aria-label="${item.exact ? "Open" : "Find"} ${escapeHtml(item.title)} on Tableau Public">
-            <span class="tableau-index">${String(index + 1).padStart(2, "0")} / 10</span>
+            <span class="tableau-index">${String(data.tableau.indexOf(item) + 1).padStart(2, "0")} / 10</span>
             <h4>${escapeHtml(item.title)}</h4>
             <p>${escapeHtml(item.category)} · ${item.exact ? "Direct view ↗" : "Profile view ↗"}</p>
           </a>
         </article>`).join("");
+    if (tableauCount) tableauCount.textContent = `Showing ${visible.length} of ${matches.length} ${matches.length === 1 ? "visualization" : "visualizations"}`;
+    if (tableauToggle) {
+      tableauToggle.hidden = matches.length <= 4;
+      tableauToggle.textContent = showAllTableau ? "Show featured visualizations" : `View all ${matches.length} visualizations`;
+      tableauToggle.setAttribute("aria-expanded", String(showAllTableau));
+    }
     observeReveals(tableauGrid);
   }
 
-  const tableauFilterButtons = [...document.querySelectorAll("[data-tableau-filter]")];
   tableauFilterButtons.forEach((button) => {
-    button.setAttribute("aria-pressed", String(button.dataset.tableauFilter === "all"));
+    const selected = button.dataset.tableauFilter === activeTableauFilter;
+    button.classList.toggle("active", selected);
+    button.setAttribute("aria-pressed", String(selected));
     button.addEventListener("click", () => {
-      const selectedGroup = button.dataset.tableauFilter;
+      activeTableauFilter = button.dataset.tableauFilter;
+      showAllTableau = false;
       tableauFilterButtons.forEach((item) => {
-        const selected = item === button;
-        item.classList.toggle("active", selected);
-        item.setAttribute("aria-pressed", String(selected));
+        const itemSelected = item === button;
+        item.classList.toggle("active", itemSelected);
+        item.setAttribute("aria-pressed", String(itemSelected));
       });
-      tableauGrid?.querySelectorAll(".tableau-card").forEach((card) => {
-        card.classList.toggle("hidden", selectedGroup !== "all" && card.dataset.tableauGroup !== selectedGroup);
-      });
+      renderTableau();
     });
+  });
+
+  tableauToggle?.addEventListener("click", () => {
+    showAllTableau = !showAllTableau;
+    renderTableau();
   });
 
   const repoGrid = document.getElementById("repo-grid");
@@ -168,11 +195,13 @@
   const repoToggle = document.getElementById("repo-toggle");
   const repoSearch = document.getElementById("repo-search");
   const filterButtons = [...document.querySelectorAll("[data-repo-filter]")];
-  let activeRepoFilter = "all";
+  let activeRepoFilter = "original";
   let showAllRepos = false;
 
   filterButtons.forEach((button) => {
-    button.setAttribute("aria-pressed", String(button.dataset.repoFilter === activeRepoFilter));
+    const selected = button.dataset.repoFilter === activeRepoFilter;
+    button.classList.toggle("active", selected);
+    button.setAttribute("aria-pressed", String(selected));
   });
 
   function filteredRepos() {
@@ -209,7 +238,10 @@
       repoGrid.innerHTML = '<p class="empty-state">No repositories match that search.</p>';
     }
 
-    if (repoCount) repoCount.textContent = `Showing ${visible.length} of ${matches.length} ${matches.length === 1 ? "repository" : "repositories"}`;
+    if (repoCount) {
+      const repoLabel = activeRepoFilter === "original" ? "original repositories" : activeRepoFilter === "fork" ? "forked repositories" : "repositories";
+      repoCount.textContent = `Showing ${visible.length} of ${matches.length} ${repoLabel}`;
+    }
     if (repoToggle) {
       repoToggle.hidden = matches.length <= 9;
       repoToggle.textContent = showAllRepos ? "Show fewer repositories" : "Show all repositories";
@@ -261,6 +293,13 @@
   }
 
   observeReveals();
+
+  document.querySelectorAll("details").forEach((details) => {
+    details.addEventListener("toggle", () => {
+      if (!details.open) return;
+      details.querySelectorAll(".reveal").forEach((element) => element.classList.add("is-visible"));
+    });
+  });
 
   const collectionGroups = [
     { target: document.getElementById("credentials"), initialize: renderCredentials },
