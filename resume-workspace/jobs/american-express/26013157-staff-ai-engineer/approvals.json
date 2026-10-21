@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "decisions": [],
+  "pending_proposals": [
+    "P01",
+    "P02",
+    "P03",
+    "P04",
+    "P05"
+  ],
+  "decision_fields": [
+    "proposal_id",
+    "proposal_version",
+    "decision",
+    "approved_text",
+    "user_response_verbatim",
+    "decided_at"
+  ],
+  "note": "Only explicit user decisions authorize changes. Do not populate approvals on the user\u2019s behalf."
+}

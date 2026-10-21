@@ -1,0 +1,47 @@
+{
+  "records": [
+    {
+      "id": "exp-hartford-01",
+      "role_id": "hartford",
+      "text": "Delivered secure GenAI underwriting assistants and identity-aware RAG pipelines.",
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "exp-hartford-02",
+      "role_id": "hartford",
+      "text": "Scaled enterprise Copilot and GitHub-based agentic remediation workflows.",
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "exp-hartford-03",
+      "role_id": "hartford",
+      "text": "Reached 95%+ task success while reducing latency 40% and inference cost 25%.",
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "exp-cognizant-01",
+      "role_id": "cognizant",
+      "text": "Modernized legacy workloads with Kafka, Kubernetes, Snowflake and Databricks.",
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "exp-jio-01",
+      "role_id": "jio",
+      "text": "Processed more than 10TB of daily telecom telemetry with Hadoop and Spark.",
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "exp-jio-02",
+      "role_id": "jio",
+      "text": "Served behavioral models to 50M+ users, improving session duration 25%.",
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    }
+  ],
+  "note": "Selected excerpts only. Validate metric baselines, attribution, measurement period, and publication permission before final use."
+}

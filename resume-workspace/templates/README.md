@@ -1,0 +1,1 @@
+Create jobs/<company>/<job-id>-<role>/, copy job.metadata.json, fill company/job/title and official job_links, then create job-description.md, gap-analysis.md, proposed-changes.md, and approvals.json. Each job link should include type, url, last_checked_on, and access_status. Follow the workspace AGENTS.md. Use an empty decisions array until the user explicitly responds.

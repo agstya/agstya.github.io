@@ -1,0 +1,13 @@
+{
+  "sources": [
+    {
+      "id": "portfolio",
+      "url": "https://github.com/agstya/agstya.github.io/blob/main/index.html",
+      "reviewed_on": "2026-10-21",
+      "type": "public_portfolio",
+      "status": "source_observed_pending_confirmation"
+    }
+  ],
+  "source_resume": null,
+  "note": "Public site is a provisional reference, not a supplied source r\u00e9sum\u00e9."
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "company": "American Express",
+  "job_id": "26013157",
+  "job_title": "Staff AI Engineer - Personalization, Brand, Communications Tech",
+  "job_links": [
+    {
+      "type": "official_posting",
+      "url": "https://careers.americanexpress.com/en/sites/CX_1/jobs/preview/26013157/?keyword=Staff+AI+Engineer+-+Personalization%2C+Brand%2C+Communications+Tech+26013157&intlink=us-amex-career-en-us-search",
+      "resolved_url": "https://careers.americanexpress.com/en/sites/CX_1/job/26013157",
+      "last_checked_on": "2026-10-21",
+      "access_status": "read_in_browser"
+    }
+  ],
+  "location": "New York, NY, United States",
+  "work_model": "Hybrid",
+  "employment_type": "Full time",
+  "posting_date_displayed": "10/12/2026, 10:15 AM",
+  "apply_before_displayed": "10/30/2026, 12:00 AM",
+  "posting_timezone": null,
+  "salary_displayed": "$144250 - $256250 annually + bonus + equity (if applicable) + benefits",
+  "source_resume": null,
+  "shared_assets": "../../../shared-assets",
+  "files": {
+    "job_description": "job-description.md",
+    "gap_analysis": "gap-analysis.md",
+    "proposed_changes": "proposed-changes.md",
+    "approvals": "approvals.json",
+    "tailored_resume": null
+  },
+  "workflow": {
+    "stage": "preliminary_analysis",
+    "require_explicit_approval_for": [
+      "skill_additions",
+      "skill_modifications",
+      "experience_bullet_additions",
+      "experience_bullet_modifications",
+      "shared_fact_changes"
+    ],
+    "final_resume_blockers": [
+      "Source r\u00e9sum\u00e9 absent or new base r\u00e9sum\u00e9 not approved",
+      "Proposed edits not approved"
+    ]
+  }
+}

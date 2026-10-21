@@ -1,0 +1,15 @@
+{
+  "records": [],
+  "status": "awaiting_confirmation",
+  "required_fields": [
+    "id",
+    "institution",
+    "degree",
+    "field",
+    "start",
+    "end",
+    "completion_status",
+    "source_id",
+    "status"
+  ]
+}

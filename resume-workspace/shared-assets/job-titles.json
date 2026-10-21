@@ -1,0 +1,44 @@
+{
+  "records": [
+    {
+      "id": "deloitte",
+      "employer": "Deloitte",
+      "title": "Forward-Deployed Engineer, AI & Data Practice",
+      "client": null,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "hartford",
+      "employer": "The Hartford",
+      "title": "Senior Staff Software Engineer",
+      "client": null,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "accenture",
+      "employer": "Accenture",
+      "title": "AI Solutions & Data Products - Senior Consultant",
+      "client": "PSEG",
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "cognizant",
+      "employer": "Cognizant Technology Solutions",
+      "title": "Senior Cloud Architect & Product Developer",
+      "client": null,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "jio",
+      "employer": "Reliance Jio",
+      "title": "Deputy Manager - Data Science and Product Analytics",
+      "client": null,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "company": null,
+  "job_id": null,
+  "job_title": null,
+  "job_links": [],
+  "source_resume": null,
+  "shared_assets": "../../../shared-assets",
+  "files": {
+    "job_description": "job-description.md",
+    "gap_analysis": "gap-analysis.md",
+    "proposed_changes": "proposed-changes.md",
+    "approvals": "approvals.json",
+    "tailored_resume": null
+  },
+  "workflow": {
+    "stage": "not_started",
+    "require_explicit_approval_for": [
+      "skill_additions",
+      "skill_modifications",
+      "experience_bullet_additions",
+      "experience_bullet_modifications",
+      "shared_fact_changes"
+    ]
+  }
+}

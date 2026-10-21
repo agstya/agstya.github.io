@@ -1,0 +1,15 @@
+{
+  "records": [],
+  "status": "awaiting_individual_credential_verification",
+  "required_fields": [
+    "id",
+    "name",
+    "issuer",
+    "issued_on",
+    "expires_on",
+    "credential_url",
+    "source_id",
+    "status"
+  ],
+  "note": "Do not treat the site\u2019s aggregate credential count as verification of individual certifications."
+}

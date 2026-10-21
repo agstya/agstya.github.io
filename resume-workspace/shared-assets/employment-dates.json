@@ -1,0 +1,46 @@
+{
+  "precision": "month",
+  "records": [
+    {
+      "role_id": "deloitte",
+      "start": "2026-07",
+      "end": null,
+      "current": true,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "role_id": "hartford",
+      "start": "2022-09",
+      "end": "2026-07",
+      "current": false,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "role_id": "accenture",
+      "start": "2021-07",
+      "end": "2022-09",
+      "current": false,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "role_id": "cognizant",
+      "start": "2020-07",
+      "end": "2021-07",
+      "current": false,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "role_id": "jio",
+      "start": "2014-06",
+      "end": "2019-01",
+      "current": false,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    }
+  ],
+  "note": "Verify exact dates and gaps; do not claim 12+ qualifying years from a 2014 start alone."
+}

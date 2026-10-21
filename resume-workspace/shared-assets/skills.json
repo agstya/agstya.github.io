@@ -1,0 +1,89 @@
+{
+  "records": [
+    {
+      "id": "skill-01",
+      "name": "Agentic AI",
+      "proficiency": null,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "skill-02",
+      "name": "Identity-aware RAG",
+      "proficiency": null,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "skill-03",
+      "name": "AI evaluation",
+      "proficiency": null,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "skill-04",
+      "name": "AWS",
+      "proficiency": null,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "skill-05",
+      "name": "Google Cloud",
+      "proficiency": null,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "skill-06",
+      "name": "Kubernetes",
+      "proficiency": null,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "skill-07",
+      "name": "Kafka",
+      "proficiency": null,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "skill-08",
+      "name": "Terraform",
+      "proficiency": null,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "skill-09",
+      "name": "Hadoop",
+      "proficiency": null,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "skill-10",
+      "name": "Spark",
+      "proficiency": null,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "skill-11",
+      "name": "Recommendations",
+      "proficiency": null,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    },
+    {
+      "id": "skill-12",
+      "name": "Experimentation",
+      "proficiency": null,
+      "source_id": "portfolio",
+      "status": "source_observed_pending_confirmation"
+    }
+  ],
+  "note": "Confirm hands-on use, depth, recency, and role linkage before r\u00e9sum\u00e9 inclusion. Posting-only tools must not be added as facts."
+}
